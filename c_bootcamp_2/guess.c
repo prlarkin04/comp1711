@@ -6,9 +6,11 @@ int main() {
     int guess;
     int lives = 3;
 
-    while (lives > 0)
+    if (lives > 0)
     {
-         while (correct == 0)
+
+        
+        while (lives > 0)
         {
 
             printf("Please enter your guess: ");
@@ -17,24 +19,29 @@ int main() {
             if (guess == a)
             {
                 printf("You guessed correctly\n");
-                correct = (1);
+                break;
             }
-            else
+            else if (guess != a)
             {
                 printf("You guessed incorrectly\n");
-                (lives -=1 );
-                if(guess > a)
+                lives -=1;
+                if (guess > a)
                 {
                     printf("Lower\n");
+                    printf("%d lives left\n",lives);
                 }
-                else
+                else if (guess < a)
                 {
                     printf("Higher\n");
+                    printf("%d lives left\n",lives);
                 }            
             }
         }
+        
     }
-
-   
-return (0);
+    if (lives == 0)
+    {
+        printf("You are out of lives!\n");
+    }
+    return (0);
 }
