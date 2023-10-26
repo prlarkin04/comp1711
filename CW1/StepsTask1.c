@@ -42,7 +42,38 @@ void tokeniseRecord(const char *input, const char *delimiter,
 }
 
 // Complete the main function
-int main() {
+int main() 
+{
+    //an array of StepsTask's records
+    FITNESS_DATA data[100];
+    int buffer_size = 250;
+    char line [buffer_size];
+    int counter = 0;
 
+    FILE *input = fopen("FitnessData_2023.csv", "r");
 
+    char date[11];
+    char time[6];
+    char step[100];
+
+    while(fgets(line, buffer_size, input))
+    {
+        tokeniseRecord(line, ",",date,time,step);
+        strcpy(data[counter].date,date);
+        strcpy(data[counter].time,time);
+        data[counter].steps = atoi(step);
+        counter++;
+
+    }
+
+    printf("Number of records in file: %d\n", counter);
+
+    for (int i = 0; i < 3; i++)
+    {
+        printf("%s/", data[i].date);
+        printf("%s/", data[i].time);
+        printf("%d\n", data[i].steps);
+    }
+
+    
 }
