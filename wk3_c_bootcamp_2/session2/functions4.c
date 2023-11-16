@@ -35,7 +35,7 @@ int main ()
     printf ("\n");
     printf ("Select A to convert to Celsius\n");
     printf ("Select B to convert to Kelvin\n");
-    printf("Select C to convert to Newton\n");
+    printf ("Select C to convert to Newton\n");
     printf ("Select Q to quit\n");
 
     scanf(" %c", &option);
