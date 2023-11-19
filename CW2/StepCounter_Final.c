@@ -96,7 +96,7 @@ int main()
                 FILE *input = fopen(filename, "r");
                 if (input == NULL) 
                 {
-                    printf("Error: Could not find or open the file.\n");
+                    printf("Error: Could not find or open the file.");
                 } 
                 else
                 {
@@ -115,7 +115,7 @@ int main()
 
             case 'B':
             case 'b':
-                printf ("Total Records: %d\n", counter);
+                printf ("Total Records: %d", counter);
                 break;
 
             case 'C':
