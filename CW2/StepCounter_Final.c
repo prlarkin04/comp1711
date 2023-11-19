@@ -54,10 +54,10 @@ int main()
     int optionvalid = 0;
     int buffer_size = 250;
     char line [buffer_size];
-
     char date[11];
     char time[6];
     char step[100];
+
     int feweststeps;
     int indexfewest;
     int largeststeps;
