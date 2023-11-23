@@ -10,8 +10,8 @@ int counter = 0;
 
 
 // Global variables for filename and FITNESS_DATA array
-FITNESS_DATA data[100];
-char filename[500];
+FITNESS_DATA data[800];
+char filename[800];
 
 
 
@@ -68,6 +68,7 @@ int main()
     int longestendindex = -1;
     int currentstartIndex = -1;
     int currentendIndex = -1;
+    int fileerror = 0;
 
     
 
@@ -97,7 +98,8 @@ int main()
                 if (input == NULL) 
                 {
                     printf("Error: Could not find or open the file.");
-                    return 1;
+                    fileerror = 1;
+                    break;
                 } 
                 else
                 {
@@ -205,13 +207,20 @@ int main()
             case 'Q':
             case 'q':
                 optionvalid = 1;
+                return 0;
                     break;
             
             default:
                 printf("Invalid choice. Try again.");
                     break;
         }
-    }  
+    }
+
+    if (fileerror == 1);
+    {
+        return 1;
+    }
+
 }
 
 
