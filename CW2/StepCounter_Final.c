@@ -68,7 +68,6 @@ int main()
     int longestendindex = -1;
     int currentstartIndex = -1;
     int currentendIndex = -1;
-    int fileerror = 0;
 
     
 
@@ -97,9 +96,8 @@ int main()
                 FILE *input = fopen(filename, "r");
                 if (input == NULL) 
                 {
-                    printf("Error: Could not find or open the file.");
-                    fileerror = 1;
-                    break;
+                    printf("Error: Could not find or open the file.\n");
+                    return 1;
                 } 
                 else
                 {
@@ -215,12 +213,6 @@ int main()
                     break;
         }
     }
-
-    if (fileerror == 1);
-    {
-        return 1;
-    }
-
 }
 
 
