@@ -97,6 +97,7 @@ int main()
                 if (input == NULL) 
                 {
                     printf("Error: Could not find or open the file.");
+                    return 1;
                 } 
                 else
                 {
