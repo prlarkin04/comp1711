@@ -73,7 +73,6 @@ int main()
 
     while (optionvalid == 0)
     {
-        printf ("\n");
         printf ("Menu Options:\n");
         printf ("A: Specify the filename to be imported\n");
         printf ("B: Display the total number of records in the file\n");
@@ -84,15 +83,20 @@ int main()
         printf ("Q: Quit\n");
         printf ("Enter Choice: ");
 
-        scanf(" %c", &option);
+        char choice;
 
-        switch (option)
+        choice = getchar();
+
+        while(getchar() != '\n');
+
+        switch (choice)
         {
             case 'A':
             case 'a':
                 counter = 0;
-                printf ("Input Filename: ");
-                scanf("%s", filename);
+                printf ("Input filename: ");
+                fgets(line, 200, stdin);
+                sscanf(line, " %s ", filename);
                 FILE *input = fopen(filename, "r");
                 if (input == NULL) 
                 {
@@ -101,8 +105,8 @@ int main()
                 } 
                 else
                 {
-                printf("File successfully loaded");
-                while(fgets(line, buffer_size, input))
+                printf("File successfully loaded.\n");
+                while(fgets(line, buffer_size, input) != NULL)
                 {
                     tokeniseRecord(line, ",",date,time,step);
                     strcpy(data[counter].date,date);
@@ -116,12 +120,12 @@ int main()
 
             case 'B':
             case 'b':
-                printf ("Total Records: %d", counter);
+                printf ("Total Records: %i\n", counter);
                 break;
 
             case 'C':
             case 'c':
-                feweststeps= data[0].steps; // Initialize with the first record's steps
+                feweststeps = data[0].steps; // Initialize with the first record's steps
                 indexfewest = 0; // Initialize index for the record with the fewest steps
 
                 for (int i = 1; i < counter; i++)
@@ -132,7 +136,7 @@ int main()
                         indexfewest = i;
                     }
                 }
-                printf("Fewest Steps:  %s %s", data[indexfewest].date, data[indexfewest].time);
+                printf("Fewest Steps: %s %s\n", data[indexfewest].date, data[indexfewest].time);
                 break;
             
             case 'D':
@@ -148,7 +152,7 @@ int main()
                         indexlargest = i;
                     }
                 }
-                printf("Largest Steps:  %s %s", data[indexlargest].date, data[indexlargest].time);
+                printf("Largest Steps: %s %s\n", data[indexlargest].date, data[indexlargest].time);
                 break;
 
             case 'E':
@@ -159,7 +163,7 @@ int main()
                     steptotal=steptotal+data[i].steps;
                 }
                 stepmean = steptotal/counter;
-                printf("Mean step count: %d", stepmean);
+                printf("Mean step count: %i\n", stepmean);
                 break;
 
             case 'F':
@@ -195,7 +199,7 @@ int main()
                 // Print the start and end dates and times of the longest continuous period
                 if (longeststartindex != -1 && longestendindex != -1) {
                     printf("Longest Period Start: %s %s\n", data[longeststartindex].date, data[longeststartindex].time);
-                    printf("Longest Period End: %s %s", data[longestendindex].date, data[longestendindex].time);
+                    printf("Longest Period End: %s %s\n", data[longestendindex].date, data[longestendindex].time);
                 } else {
                     printf("No period with steps above 500 found.\n");
                 }
@@ -209,7 +213,7 @@ int main()
                     break;
             
             default:
-                printf("Invalid choice. Try again.");
+                printf("Invalid choice. Try again.\n");
                     break;
         }
     }
