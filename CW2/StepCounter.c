@@ -63,7 +63,7 @@ int main()
     int largeststeps;
     int indexlargest;
     int steptotal;
-    int stepmean;
+    float stepmean;
     int longeststartindex = -1;
     int longestendindex = -1;
     int currentstartIndex = -1;
@@ -120,7 +120,7 @@ int main()
 
             case 'B':
             case 'b':
-                printf ("Total Records: %i\n", counter);
+                printf ("Total records: %i\n", counter);
                 break;
 
             case 'C':
@@ -136,7 +136,7 @@ int main()
                         indexfewest = i;
                     }
                 }
-                printf("Fewest Steps: %s %s\n", data[indexfewest].date, data[indexfewest].time);
+                printf("Fewest steps: %s %s\n", data[indexfewest].date, data[indexfewest].time);
                 break;
             
             case 'D':
@@ -152,7 +152,7 @@ int main()
                         indexlargest = i;
                     }
                 }
-                printf("Largest Steps: %s %s\n", data[indexlargest].date, data[indexlargest].time);
+                printf("Largest steps: %s %s\n", data[indexlargest].date, data[indexlargest].time);
                 break;
 
             case 'E':
@@ -162,8 +162,19 @@ int main()
                 {
                     steptotal=steptotal+data[i].steps;
                 }
-                stepmean = steptotal/counter;
-                printf("Mean step count: %i\n", stepmean);
+                stepmean = (float) steptotal/counter;
+                printf("Unrounded mean: %f\n", stepmean);
+
+                int meanStepsRound;
+                if (stepmean >= 0) 
+                {
+                meanStepsRound = (int)(stepmean + 0.5);
+                }
+                else
+                {
+                meanStepsRound = (int)(stepmean - 0.5);
+                }
+                printf("Mean step count: %d\n", meanStepsRound ); //round step count
                 break;
 
             case 'F':
@@ -198,8 +209,8 @@ int main()
 
                 // Print the start and end dates and times of the longest continuous period
                 if (longeststartindex != -1 && longestendindex != -1) {
-                    printf("Longest Period Start: %s %s\n", data[longeststartindex].date, data[longeststartindex].time);
-                    printf("Longest Period End: %s %s\n", data[longestendindex].date, data[longestendindex].time);
+                    printf("Longest period start: %s %s\n", data[longeststartindex].date, data[longeststartindex].time);
+                    printf("Longest period end: %s %s\n", data[longestendindex].date, data[longestendindex].time);
                 } else {
                     printf("No period with steps above 500 found.\n");
                 }
